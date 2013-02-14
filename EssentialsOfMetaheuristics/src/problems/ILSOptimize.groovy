@@ -8,11 +8,12 @@ class ILSOptimize {
 	Integer maxIterations = 1000
 	Float lowerBound = 1
 	Float upperBound = 50
-	Float halfMutationRange = 2
+	Float halfMutationRange = 10
 	def smallProblem
 	
 	def create = {
-		smallProblem=new LeadingOnes(numBits : 10, maxIterations : 100)
+		smallProblem=new LeadingOnes(numBits : 50 , maxIterations : 100)
+		//smallProblem=new OnesMax(numBits:10, maxIterations:100)
 		return new IteratedLocalSearchRandomRestarts()
 	}
 	
@@ -21,7 +22,10 @@ class ILSOptimize {
 	def quality = { a ->
 		println "evaluating quality of ILS_OPT, ${a.mutationRate}"
 		++evalCount
-		smallProblem.quality(a.maximize(smallProblem))
+		smallProblem.evalCount = 0
+		def qual = smallProblem.quality(a.maximize(smallProblem))
+		println("giving $qual to HC")
+		return qual
 	}
 	
 	def tweak = { a ->

@@ -6,7 +6,7 @@ import singleStateMethods.HillClimber
 class ResearchRunner {
 	static main(args){
 		def searcher=new HillClimber()
-		def problem=new ILSOptimize()
+		def problem=new ILSOptimize(maxIterations:100)
 		def numRuns=1
 		for (i in 0..<numRuns) {
 			problem.evalCount = 0
