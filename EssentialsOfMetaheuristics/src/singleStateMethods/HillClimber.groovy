@@ -12,6 +12,7 @@ class HillClimber {
 		while (!problem.terminate(s, sQuality)) {
 			def r = problem.tweak(problem.copy(s))
 			def rQuality = problem.quality(r)
+			println("rQuality = $rQuality")
 			if (rQuality > sQuality) {
 				s = r
 				sQuality = rQuality

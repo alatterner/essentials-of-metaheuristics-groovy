@@ -17,7 +17,7 @@ class ExperimentRunner {
 				for (i in 0..<numRuns) {
 					p.evalCount = 0
 					def result = s.maximize(p)
-					println "${s.toString()}\t${p.toString()}\t${p.quality(result)}\t${result}"
+					println "${s.toString()}\t${p.toString()}\t${p.quality(result)}"
 				}
 			}
 		}
@@ -37,17 +37,19 @@ class ExperimentRunner {
 		]
 		def problems = [
 //			new OnesMax(numBits : 100, maxIterations : 250),
-//			new LeadingOnes(numBits : 100, maxIterations : 1000),
+			new LeadingOnes(numBits : 10, maxIterations: 100),
+			new LeadingOnes(numBits : 100, maxIterations : 100),
+			new LeadingOnes(numBits : 100, maxIterations : 500)
 //			new LeadingOnesBlocks(numBits : 100, maxIterations : 10000, blockSize : 1), 
 //			new LeadingOnesBlocks(numBits : 100, maxIterations : 10000, blockSize : 2), 
 //			new LeadingOnesBlocks(numBits : 100, maxIterations : 10000, blockSize : 4),
 //			new Trap(numBits : 4, maxIterations : 1000), 
 //			new Trap(numBits : 8, maxIterations : 1000), 
 //			new Trap(numBits : 16, maxIterations : 1000), 
-			new HIFF(numBits : 4, maxIterations : 1000),
-			new HIFF(numBits : 8, maxIterations : 1000),
-			new HIFF(numBits : 16, maxIterations : 1000),
-			new HIFF(numBits : 32, maxIterations : 1000)
+//			new HIFF(numBits : 4, maxIterations : 1000),
+//			new HIFF(numBits : 8, maxIterations : 1000),
+//			new HIFF(numBits : 16, maxIterations : 1000),
+//			new HIFF(numBits : 32, maxIterations : 1000)
 		]
 		// It would be nice to collect the total time here and include it in the
 		// output.

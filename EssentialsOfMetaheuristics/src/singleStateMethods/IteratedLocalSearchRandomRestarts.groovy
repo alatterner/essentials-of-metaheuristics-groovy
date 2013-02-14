@@ -7,6 +7,7 @@ class IteratedLocalSearchRandomRestarts {
 	def rand=new Random()
 	def intermediateEvalCount = 0
 	def iterationsSinceHomeBaseChange = 0
+	def mutationRate = 4
 
 	def timeDistribution = { (10..100) }
 
@@ -45,7 +46,7 @@ class IteratedLocalSearchRandomRestarts {
 			}
 			home = newHomeBase(home, s, homeQuality, sQuality)
 			homeQuality=problem.quality(s)
-			s = problem.perturb(home)
+			s = problem.perturb(home, mutationRate)
 			sQuality=problem.quality(s)
 		}
 		return best
