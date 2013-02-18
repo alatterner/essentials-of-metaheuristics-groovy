@@ -18,14 +18,22 @@ class ILSOptimize {
 	}
 	
 	def copy = { a -> new IteratedLocalSearchRandomRestarts(mutationRate: a.mutationRate) }
-	
+	//Change quality to a loop. Mean the quality.
 	def quality = { a ->
-		println "evaluating quality of ILS_OPT, ${a.mutationRate}"
+		//println "evaluating quality of ILS_OPT, ${a.mutationRate}"
 		++evalCount
-		smallProblem.evalCount = 0
-		def qual = smallProblem.quality(a.maximize(smallProblem))
-		println("giving $qual to HC")
-		return qual
+		def qualList = new ArrayList()
+		def runTimes = 30
+		runTimes.times{
+			smallProblem.evalCount = 0
+			qualList.add(smallProblem.quality(a.maximize(smallProblem)))
+		}
+		def average = 0
+		qualList.each() {
+			average += it
+		}
+		average=average/runTimes
+		return average
 	}
 	
 	def tweak = { a ->

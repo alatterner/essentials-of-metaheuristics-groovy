@@ -41,7 +41,6 @@ class IteratedLocalSearchRandomRestarts {
 				}
 			}
 			if(sQuality > bestQuality){
-				println("found best in ILS")
 				best = s
 				bestQuality=sQuality
 			}
