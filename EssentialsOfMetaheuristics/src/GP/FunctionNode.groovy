@@ -6,7 +6,7 @@ class FunctionNode {
 	def children
 	def id
 	
-	def evaluation = {
+	def evaluate = {
 		value(children)
 	}
 }

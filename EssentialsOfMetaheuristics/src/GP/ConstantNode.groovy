@@ -7,7 +7,7 @@ class ConstantNode {
 	def children = null
 	def id
 	
-	def evaluation = {
+	def evaluate = {
 		value
 	}
 }
