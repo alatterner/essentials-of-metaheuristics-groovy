@@ -40,8 +40,6 @@ class NodeStackTest extends Specification{
 		expectedStack.push("/")
 		expectedStack.push("/")
 		expectedStack.push("*")
-		println(nodeStack.toString())
-		println(expectedStack.toString())
 		
 		expect:
 		nodeStack.stack.toString().equals(expectedStack.toString())
