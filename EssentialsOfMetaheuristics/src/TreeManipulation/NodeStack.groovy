@@ -34,6 +34,15 @@ class NodeStack {
 	def empty = {
 		stack.empty()
 	}
+	//This will give us a non-functionNode terminal node.
+	def getTerminal = {
+		def value = stack.pop()
+		
+		while(value.class == GP.FunctionNode){
+			value=stack.pop()
+		}
+		value
+	}
 	
 	
 	//This doesn't work

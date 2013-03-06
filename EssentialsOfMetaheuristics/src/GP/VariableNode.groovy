@@ -6,6 +6,7 @@ class VariableNode {
 	def parent
 	def children = null
 	def id
+	def arity = 0
 	
 	
 	def evaluate = {

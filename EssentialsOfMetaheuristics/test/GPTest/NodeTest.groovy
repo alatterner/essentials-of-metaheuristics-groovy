@@ -46,6 +46,7 @@ public class NodeTest extends Specification {
 		}
 		
 		fNode = new FunctionNode(value: fFunction, children: fNodeChildren)
+		
 		expect:
 		fNode.evaluate() == 5
 	}
