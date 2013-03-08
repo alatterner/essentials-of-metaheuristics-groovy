@@ -11,4 +11,8 @@ class ConstantNode {
 	def evaluate = {
 		value
 	}
+	
+	String toString() {
+		value.toString()
+	}
 }

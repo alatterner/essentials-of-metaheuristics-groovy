@@ -13,4 +13,8 @@ class VariableNode {
 		//We need to check the variable against a mapping of the variables passed into it. We don't know where that is yet.
 		value
 	}
+	
+	String toString() {
+		value
+	}
 }

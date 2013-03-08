@@ -5,9 +5,16 @@ class FunctionNode {
 	def parent
 	def children
 	def id
-	def arity
 	
 	def evaluate = {
 		value(children)
+	}
+	
+	def getArity = {
+		value.getArity()
+	}
+	
+	String toString() {
+		value.toString()
 	}
 }

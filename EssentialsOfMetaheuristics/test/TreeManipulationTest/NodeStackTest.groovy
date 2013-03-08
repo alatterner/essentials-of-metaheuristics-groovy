@@ -13,12 +13,14 @@ class NodeStackTest extends Specification{
 	def nodeStack
 	def constantRange = [-5, 5]
 	def variables = ["x", "y", "z"]
-	def functions = ["if", "+", "-", "*", "/", "sin"]
+	def functions
 	def terminalProb = 0.25
-	
+	def functionList = new Functions()
 	def setup() {
+		functions = functionList.getFunctions()
 		nodeStack = new NodeStack(constantRange: constantRange, variables: variables, functions: functions, terminalProb: terminalProb)
 		nodeStack.rand.setSeed(-6301399511171497922)
+		
 	}
 	
 	def "test initiating"() {
@@ -32,17 +34,24 @@ class NodeStackTest extends Specification{
 		Stack expectedStack = new Stack()
 
 		expectedStack.push("z")
-		expectedStack.push("+")
-		expectedStack.push("y")
-		expectedStack.push("-")
+		expectedStack.push("if")
 		expectedStack.push("y")
 		expectedStack.push("+")
-		expectedStack.push("/")
-		expectedStack.push("/")
-		expectedStack.push("*")
+		expectedStack.push("y")
+		expectedStack.push("if")
+		expectedStack.push("sin")
+		expectedStack.push("sin")
+		expectedStack.push("cos")
 		
 		expect:
 		nodeStack.stack.toString().equals(expectedStack.toString())
 		
+	}
+	
+	def "test making a terminal"() {
+		given:
+		nodeStack.pop()
+		expect:
+		nodeStack.getTerminal().toString().equals("y")
 	}
 }
