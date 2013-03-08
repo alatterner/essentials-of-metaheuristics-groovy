@@ -1,5 +1,8 @@
 package TreeManipulation
 
+import GP.ConstantNode
+import GP.VariableNode
+
 class NodeStack {
 
 	def stack = new Stack()
@@ -16,9 +19,13 @@ class NodeStack {
 				stack.push(functions[rand.nextInt(functions.size())])
 			} else {
 				if (rand.nextBoolean()) {
-					stack.push(variables[rand.nextInt(variables.size())])
+					def variable = variables[rand.nextInt(variables.size())]
+					def varNode = new VariableNode(value: variable)
+					stack.push(varNode)
 				} else {
-					stack.push(rand.nextInt(constantRange[1]-constantRange[0])+constantRange[0])
+					def constant = rand.nextInt(constantRange[1]-constantRange[0])+constantRange[0]
+					def consNode = new ConstantNode(value: constant)
+					stack.push(consNode)
 				}
 			}
 		}

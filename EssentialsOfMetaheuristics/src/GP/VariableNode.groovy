@@ -6,7 +6,6 @@ class VariableNode {
 	def parent
 	def children = null
 	def id
-	def arity = 0
 	
 	
 	def evaluate = {
@@ -16,5 +15,9 @@ class VariableNode {
 	
 	String toString() {
 		value
+	}
+	
+	def getArity = {
+		0
 	}
 }

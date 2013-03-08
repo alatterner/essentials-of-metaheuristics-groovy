@@ -20,15 +20,15 @@ class TreeBuilder {
 	}
 
 	def childrenBuilder = {currDepth, node ->
-		node.children=new Object[node.arity]
+		node.children=new Object[node.getArity()]
 		if(currDepth<depth){
-			node.arity.each{
-				node.children[it]=nodeStack.pop()
-				childrenBuilder(currDepth+1, node.children[it])
+			node.getArity().each{
+				node.children[it-1]=nodeStack.pop()
+				childrenBuilder(currDepth+1, node.children[it-1])
 			}
 		} else {
-			node.arity.each{
-				node.children[it]=nodeStack.getTerminal()
+			node.getArity().each{
+				node.children[it-1]=nodeStack.getTerminal()
 			}
 		}
 	}

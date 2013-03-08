@@ -6,7 +6,6 @@ class ConstantNode {
 	def parent
 	def children = null
 	def id
-	def arity = 0
 	
 	def evaluate = {
 		value
@@ -14,5 +13,9 @@ class ConstantNode {
 	
 	String toString() {
 		value.toString()
+	}
+	
+	def getArity = {
+		0
 	}
 }
