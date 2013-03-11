@@ -17,7 +17,7 @@ class TreeBuilderTest extends Specification{
 	def treeBuilder
 	
 	def setup() {
-		treeBuilder = new TreeBuilder(functions: funcList, variables : variables, constantRange : constantRange, terminalProb : terminalProb)
+		treeBuilder = new TreeBuilder(functions: funcList, variables : variables, constantRange : constantRange, terminalProb : terminalProb, depth: 4)
 	}
 
 	

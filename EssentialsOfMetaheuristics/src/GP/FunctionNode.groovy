@@ -15,6 +15,8 @@ class FunctionNode {
 	}
 	
 	String toString() {
-		value.toString()
+            def returnString = ""
+            returnString = returnString.concat(value.toString())
+            returnString
 	}
 }

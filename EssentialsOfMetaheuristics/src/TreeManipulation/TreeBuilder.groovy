@@ -16,19 +16,23 @@ class TreeBuilder {
 
 		root = nodeStack.pop()
 		childrenBuilder(1, root)
-
+                root
 	}
 
 	def childrenBuilder = {currDepth, node ->
 		node.children=new Object[node.getArity()]
+                
 		if(currDepth<depth){
-			node.getArity().each{
-				node.children[it-1]=nodeStack.pop()
-				childrenBuilder(currDepth+1, node.children[it-1])
+			node.getArity().times{
+                                println(it + ": we're creating more children")
+				node.children[it]=nodeStack.pop()
+                                println("We gave the " + it + " child a value")
+				childrenBuilder(currDepth+1, node.children[it])
 			}
 		} else {
-			node.getArity().each{
-				node.children[it-1]=nodeStack.getTerminal()
+			node.getArity().times{
+                                println(it)
+				node.children[it]=nodeStack.getTerminal()
 			}
 		}
 	}

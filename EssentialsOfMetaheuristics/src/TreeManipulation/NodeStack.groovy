@@ -43,10 +43,10 @@ class NodeStack {
 	}
 	//This will give us a non-functionNode terminal node.
 	def getTerminal = {
-		def value = stack.pop()
+		def value = this.pop()
 		
 		while(value.class == GP.FunctionNode){
-			value=stack.pop()
+			value=this.pop()
 		}
 		value
 	}
