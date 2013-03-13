@@ -9,24 +9,43 @@ import TreeManipulation.TreeBuilder
 import spock.lang.Specification
 
 class TreeBuilderTest extends Specification{
-	def functions = new Functions()
-	def funcList = functions.getFunctions()
-	def variables = ["x", "y", "z"]
-	def constantRange = [-5, 5]
-	def terminalProb = 0.25
-	def treeBuilder
-	
-	def setup() {
-		treeBuilder = new TreeBuilder(functions: funcList, variables : variables, constantRange : constantRange, terminalProb : terminalProb, depth: 4)
-	}
+    def functions = new Functions()
+    def funcList = functions.getFunctions()
+    def variables = ["x", "y", "z"]
+    def constantRange = [-5, 5]
+    def terminalProb = 0.25
+    def treeBuilder
 
-	
-	def "no smoke test"() {
-		given:
-		def testTree = treeBuilder.makeTree()
-		println(testTree)
-		
-		expect:
-		testTree != null
-	}
+    def setup() {
+        treeBuilder = new TreeBuilder(functions: funcList, variables : variables, constantRange : constantRange, terminalProb : terminalProb, depth: 4)
+    }
+
+
+    def "no smoke test"() {
+        given:
+        def testTree = treeBuilder.makeTree()
+
+        expect:
+        testTree != null
+    }
+    
+    def "test generateDot"() {
+        given:
+        def testTree = treeBuilder.makeTree()
+        testTree.generateDot()
+        
+        expect:
+        testTree != null
+    }
+    
+    def "test getSize"() {
+        given:
+        def testTree = treeBuilder.makeTree()
+        def treeSize = testTree.updateSize()
+        println(treeSize)
+        
+        expect:
+        treeSize instanceof Integer
+    }
+
 }
