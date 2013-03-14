@@ -15,11 +15,13 @@ class TreeBuilder {
     
 
     def makeTree = {
-        nodeStack = new NodeStack(functions: functions, variables: variables, constantRange: constantRange, terminalProb: terminalProb)
+        if (nodeStack == null) {
+            nodeStack = new NodeStack(functions: functions, variables: variables, constantRange: constantRange, terminalProb: terminalProb)
+        }
 
         root = nodeStack.pop()
         childrenBuilder(1, root)
-        new GPTree(root:root)
+        new GPTree(root:root, nodeStack : nodeStack)
     }
 
     def childrenBuilder = {currDepth, node ->

@@ -3,7 +3,6 @@ package GP
 class ConstantNode {
 
     def value
-    def parent
     def children = null
     def id
     def size = 1
@@ -27,5 +26,14 @@ class ConstantNode {
     }
     def countSize = {
         0
+    }
+    
+    def traverse = {num ->
+        this
+    }
+    
+    @Override
+    Object clone() {
+        new ConstantNode(value : this.value, children : null, id : this.id, size : 1)
     }
 }

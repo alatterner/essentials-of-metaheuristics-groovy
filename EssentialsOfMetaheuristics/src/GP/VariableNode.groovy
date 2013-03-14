@@ -3,7 +3,6 @@ package GP
 class VariableNode {
 
     def value
-    def parent
     def children = null
     def id
     def size = 1
@@ -31,4 +30,12 @@ class VariableNode {
         0
     }
 
+    def traverse = {num ->
+        this
+    }
+    
+    @Override
+    Object clone() {
+        new VariableNode(value : this.value, children : null, id : this.id, size : 1)
+    }
 }

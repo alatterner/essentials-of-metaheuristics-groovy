@@ -54,7 +54,13 @@ class NodeStack {
         value
     }
 
-    
+    def getFunction = {
+        def value = this.pop()
+        while((value.class == GP.ConstantNode) || (value.class == GP.VariableNode)){
+            value = this.pop()
+        }
+        value
+    }
 
 
     //This doesn't work
