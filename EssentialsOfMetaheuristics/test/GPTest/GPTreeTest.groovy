@@ -13,17 +13,17 @@ class GPTreeTest extends Specification{
 		constantNode = new ConstantNode(value: 3)
 	}
 	
-	def "test null tree evaluate"() {
+	def "test empty tree evaluate"() {
 		given:
-		def nullTree = new GPTree()
+		def emptyTree = new GPTree()
 		expect:
-		nullTree.evaluate()==null
+		emptyTree.evaluate(3, 4)==null
 	}
 	
 	def "test single unit tree evaluate"() {
 		given:
 		def singleTree = new GPTree(root: constantNode)
 		expect:
-		singleTree.evaluate()==3
+		singleTree.evaluate([x: 4], [3])==0
 	}
 }

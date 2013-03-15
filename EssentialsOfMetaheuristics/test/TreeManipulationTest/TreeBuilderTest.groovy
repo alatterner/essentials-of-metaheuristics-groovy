@@ -64,6 +64,19 @@ class TreeBuilderTest extends Specification{
         testTree.traverse(5).toString() == "-5"
         testTree.traverse(6).toString() == "y"
     }
+    
+    def "test find parent()"() {
+        given:
+        def testTree = treeBuilder.makeTree()
+        
+        expect:
+        testTree.getParent(1).toString() == "*"
+        testTree.getParent(2).toString() == "*"
+        testTree.getParent(3).toString() == "*"
+        testTree.getParent(4).toString() == "+"
+        testTree.getParent(5).toString() == "sin"
+        testTree.getParent(6).toString() == "+"
+    }
 
     def "test the mutation function"() {
         given:
@@ -72,6 +85,35 @@ class TreeBuilderTest extends Specification{
         expect:
         testTree.pointMutate(3).traverse(3).toString() == "cos"
         testTree.pointMutate(2).traverse(2).toString() == "-4"
+    }
+    
+    def "test crossover mutation"() {
+        given:
+        def testTree = treeBuilder.makeTree()
+        treeBuilder.makeTree() //This is just a really lame tree and we don't want to reseed after all of this work
+        def otherTree = treeBuilder.makeTree()
+        def newTree = testTree.crossover(otherTree, 2, 1)
+        expect:
+        newTree.traverse(1).toString() == "*"
+        newTree.traverse(2).toString() == "sin"
+        newTree.traverse(3).toString() == "-"
+        newTree.traverse(4).toString() == "4"
+        newTree.traverse(5).toString() == "x"
+        newTree.traverse(6).toString() == "+"
+        newTree.traverse(7).toString() == "sin"
+        newTree.traverse(8).toString() == "-5"
+        newTree.traverse(9).toString() == "y"
+    }
+    
+    def "test test test() "() {
+        given:
+        def testTree = treeBuilder.makeTree()
+        def listOfExpectedValues = [45, 23]
+        println(testTree.evaluate([[x : 3, y : 2, z : 9], [x : 1, y : 3, z : -4]], listOfExpectedValues))
+        
+        
+        expect:
+        true
     }
 
 }

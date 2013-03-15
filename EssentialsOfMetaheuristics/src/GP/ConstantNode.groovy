@@ -7,7 +7,7 @@ class ConstantNode {
     def id
     def size = 1
 
-    def evaluate = {
+    def evaluate = {valueMap ->
         value
     }
 
@@ -28,7 +28,7 @@ class ConstantNode {
         0
     }
     
-    def traverse = {num ->
+    def traverse = {num, other ->
         this
     }
     

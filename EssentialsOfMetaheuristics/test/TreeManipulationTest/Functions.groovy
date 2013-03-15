@@ -31,11 +31,11 @@ class Functions {
 	}
 	
 	def sin = {x ->
-		Math/sin(x)
+		Math.sin(x)
 	}
 	
 	def cos = {x ->
-		Math/cos(x)
+		Math.cos(x)
 	}
 	
 	

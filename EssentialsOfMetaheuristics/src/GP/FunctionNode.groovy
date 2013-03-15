@@ -6,8 +6,22 @@ class FunctionNode {
     def id
     def size
 
-    def evaluate = {
-        value(children)
+    def evaluate = {valueMap ->
+        def childValues = [this.getArity()]
+
+        children.size().times {
+            childValues[it] = children[it].evaluate(valueMap)
+        }
+
+        if(this.getArity() == 1) {
+            this.value.function(childValues[0])
+        } else if(this.getArity() == 2) {
+            this.value.function(childValues[0], childValues[1])
+        } else if(this.getArity() == 3) {
+            this.value.function(childValues[0], childValues[1], childValues[2])
+        } else {
+            println("lol u got hacked brah")
+        }
     }
 
     def getArity = {
@@ -37,16 +51,19 @@ class FunctionNode {
         sizeOf
     }
 
-    def traverse = {num ->
-        if(num == 1) {
+    def traverse = {location, helperNum ->
+        if(location <= helperNum) {
             this
         } else {
             def node
             children.each {
-                if((num <= it.size + 1) && (node == null)) {
-                    node = it.traverse(num-1)
+                if((location <= it.size + 1) && (node == null)) {
+                    node = it.traverse(location-1, helperNum)
                 } else {
-                    num = num - (it.size)
+                    location = location - (it.size)
+                    if ((location <= helperNum) && (helperNum == 2) && node == null) {
+                        node = this
+                    }
                 }
             }
             node

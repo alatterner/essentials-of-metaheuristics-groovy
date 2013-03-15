@@ -7,9 +7,8 @@ class VariableNode {
     def id
     def size = 1
 
-    def evaluate = {
-        //We need to check the variable against a mapping of the variables passed into it. We don't know where that is yet.
-        value
+    def evaluate = {valueMap ->
+        valueMap[this.value]
     }
 
     String toString() {
@@ -30,7 +29,7 @@ class VariableNode {
         0
     }
 
-    def traverse = {num ->
+    def traverse = {num, other ->
         this
     }
     
