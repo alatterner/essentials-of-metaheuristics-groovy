@@ -13,6 +13,7 @@ class TreeBuilder {
     def terminalProb
     def root
     def varsMap
+    def testPoints
     
 
     def makeTree = {
@@ -22,7 +23,7 @@ class TreeBuilder {
 
         root = nodeStack.pop()
         childrenBuilder(1, root)
-        new GPTree(root:root.clone(), nodeStack : nodeStack)
+        new GPTree(root:root.clone(), nodeStack : nodeStack, listOfExpectedValues: testPoints, listOfValueMap:varsMap)
     }
 
     def childrenBuilder = {currDepth, node ->

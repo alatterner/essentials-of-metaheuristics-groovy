@@ -3,7 +3,7 @@ package GP
 class VariableNode {
 
     def value
-    def children = null
+    def children = [0]
     def id
     def size = 1
 

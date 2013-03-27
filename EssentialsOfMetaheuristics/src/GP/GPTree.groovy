@@ -1,6 +1,6 @@
 package GP
 
-class GPTree {
+class GPTree implements Comparable<GPTree>{
     def root = null
     def functions
     //listOfTestPoints: List of maps that are the test values for the variables
@@ -10,8 +10,10 @@ class GPTree {
     def nodeStack
     def rand = new Random()
     def fitness
+    def listOfValueMap
+    def listOfExpectedValues
 
-    def evaluate = {listOfValueMap, listOfExpectedValues ->
+    def evaluate = {
         if(this.root == null) {
             null
         } else if(fitness == null) {
@@ -31,20 +33,8 @@ class GPTree {
 
 
 
-    def compareTo = {other ->
-        if(this.evaluate() < other.evaluate()) {
-            1
-        } else if (this.evaluate() > other.evaluate()){
-            -1
-        } else {
-            0
-        }
-    }
-
-
-
     String toString() {
-        "eat me"
+        this.root.toString()
     }
 
     def generateDot = {
@@ -68,6 +58,11 @@ class GPTree {
         }
         clonedTree
     }
+    
+    def findSize = {
+        this.updateSize()
+        this.size
+    }
 
     def pointMutate = {num ->
         def treeCopy = this.clone()
@@ -75,10 +70,10 @@ class GPTree {
         if(node.class == GP.FunctionNode) {
             def func = nodeStack.getFunction()
             if(func.getArity() > node.getArity()) {
-                def toAdd = func.getArity-node.getArity
+                def toAdd = func.getArity()-node.getArity()
                 def clonedNode = node.children[0].clone()
                 toAdd.times{
-                    node.children.add(clonedNode)
+                    node.children[it] = clonedNode
                 }
             } else if(func.getArity() < node.getArity()) {
                 node.children=node.children[0..func.getArity()-1]
@@ -113,9 +108,24 @@ class GPTree {
     @Override
     Object clone() {
         def cloneTree = new GPTree(root : this.root.clone(), functions : this.functions,
-                depth : this.depth, size : this.size, maxId : this.maxId)
+                nodeStack : this.nodeStack, depth : this.depth, size : this.size, maxId : this.maxId,
+                listOfValueMap : this.listOfValueMap, listOfExpectedValues : this.listOfExpectedValues)
         cloneTree
     }
+
+
+
+    int compareTo(GPTree other) {
+//        if(this.evaluate() < other.evaluate()) {
+//            1
+//        } else if (this.evaluate() > other.evaluate()){
+//            -1
+//        } else {
+//            0
+//        }
+       // this.evaluate()<=>other.evaluate()
+    this.evaluate()
+        }
 
 
 }
