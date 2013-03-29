@@ -58,7 +58,7 @@ class GPTree implements Comparable<GPTree>{
         }
         clonedTree
     }
-    
+
     def findSize = {
         this.updateSize()
         this.size
@@ -71,9 +71,9 @@ class GPTree implements Comparable<GPTree>{
             def func = nodeStack.getFunction()
             if(func.getArity() > node.getArity()) {
                 def toAdd = func.getArity()-node.getArity()
-                def clonedNode = node.children[0].clone()
                 toAdd.times{
-                    node.children[it] = clonedNode
+                    def daStack = nodeStack.getTerminal()
+                    node.children.add(daStack)
                 }
             } else if(func.getArity() < node.getArity()) {
                 node.children=node.children[0..func.getArity()-1]
@@ -83,6 +83,9 @@ class GPTree implements Comparable<GPTree>{
             node.size = func.size
         } else {
             def terminal = nodeStack.getTerminal()
+            while(terminal.class != node.class){
+                terminal = nodeStack.getTerminal()
+            }
             node.value = terminal.value
         }
         treeCopy
@@ -116,16 +119,14 @@ class GPTree implements Comparable<GPTree>{
 
 
     int compareTo(GPTree other) {
-//        if(this.evaluate() < other.evaluate()) {
-//            1
-//        } else if (this.evaluate() > other.evaluate()){
-//            -1
-//        } else {
-//            0
-//        }
-       // this.evaluate()<=>other.evaluate()
-    this.evaluate()
+        if(this.evaluate() < other.evaluate()) {
+            1
+        } else if (this.evaluate() > other.evaluate()){
+            -1
+        } else {
+            0
         }
-
+        this.evaluate()<=>other.evaluate()
+    }
 
 }

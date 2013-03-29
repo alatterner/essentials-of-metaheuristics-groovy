@@ -27,7 +27,7 @@ class TreeBuilder {
     }
 
     def childrenBuilder = {currDepth, node ->
-        node.children=new Object[node.getArity()]
+        node.children=[]
 
         if(currDepth<depth){
             node.getArity().times{

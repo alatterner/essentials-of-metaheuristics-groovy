@@ -6,22 +6,18 @@ import GP.GPFunctions
 class Functions {
 
     def addition = {x,y ->
-        println "x = " + x.class + " and y = " + y.class
         x+y
     }
 
     def subtract = {x,y ->
-        println "x = " + x.class + " and y = " + y.class
         x-y
     }
 
     def multiplication = {x,y ->
-        println "x = " + x.class + " and y = " + y.class
         x*y
     }
 
     def division = {x,y ->
-        println "x = " + x.class + " and y = " + y.class
         if(y==0){
             y
         } else {
@@ -30,7 +26,6 @@ class Functions {
     }
 
     def ifFunc = {x,y,z ->
-        println "x = " + x.class + " and y = " + y.class + " and z = " + z.class
         if(x>0){
             y
         } else {
@@ -40,12 +35,10 @@ class Functions {
     }
 
     def sin = {x ->
-        println "x = " + x.class
         Math.sin(x)
     }
 
     def cos = {x ->
-        println "x = " + x.class
         Math.cos(x)
     }
 

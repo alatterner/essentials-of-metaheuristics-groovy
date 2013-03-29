@@ -11,7 +11,7 @@ class Square {
 
     def testPoints = [25, 16, 9, 4, 1, 0, 1, 4, 9, 16, 25]
 
-    def variableValues = [[x : -5], [x : -4], [x : -3], [x : -2], [x : -1], [x : 0], [x : 1], [x : 2], [x : 3], [x : 4], [x : 5]]
+    def variableValues = [["x" : -5], ["x" : -4], ["x" : -3], ["x" : -2], ["x" : -1], ["x" : 0], ["x" : 1], ["x" : 2], ["x" : 3], ["x" : 4], ["x" : 5]]
 
     def functions = (new Functions()).getFunctions()
     def makeTree = {

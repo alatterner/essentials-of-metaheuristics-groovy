@@ -1,9 +1,9 @@
 package experiments
 import java.util.PriorityQueue
-import problems.Square
+import problems.*
 
 class GPRunner {
-        def problem = new Square()//create problem here
+        def static problem = new Sine()//create problem here
         static numRuns
         def numTrees = 100
         def treeStore = []
@@ -28,23 +28,14 @@ class GPRunner {
                                 9.times{
                                     item.getSize()
                                     def toClone = treeStore[rand.nextInt(treeStore.size())]
-                                    println("toClone")
-                                    println(toClone.generateDot())
-                                    println("item Tree")
-                                    println(item.generateDot())
                                     def a = rand.nextInt(item.findSize())
                                     def b = rand.nextInt(toClone.findSize())
-                                    def c = rand.nextInt(item.findSize())
-                                    println("First int: ${a}, Second int: ${b}, crossover item: ${c}")
                                     def crossTree = item.crossover(toClone, a, b)
-                                    println("crossoverTree")
-                                    println(crossTree.generateDot())
+                                    def c = rand.nextInt(crossTree.findSize())
                                     def mutantTree = crossTree.pointMutate(c)
-                                    println("MUTANTTREE WASDAS")
-                                    println(mutantTree.generateDot())
                                     queue.offer(mutantTree)
                                     //queue.offer(item.crossover(toClone, rand.nextInt(item.findSize()), rand.nextInt(toClone.findSize())).pointMutate(rand.nextInt(item.findSize())))
-                                    println("WE GOT HERE YAY")
+                      
                                     }
                         }
                 }
@@ -58,9 +49,7 @@ class GPRunner {
                 def newQueue = new PriorityQueue(numTrees)
                 def newTreeStore = []
                 10.times {
-                        //println("size is " + queue.size())
                         def top = queue.poll()
-                        println("top is " + top)
                         newQueue.offer(top)
                         newTreeStore.add(top)
                 }
@@ -71,8 +60,10 @@ class GPRunner {
         static main(args) {
             //CreateSystem
             def runner = new GPRunner()
+            
             numRuns = 2
             runner.createTrees()
+            
             
     }
         

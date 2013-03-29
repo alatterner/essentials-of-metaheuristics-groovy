@@ -5,6 +5,7 @@ class FunctionNode {
     def children
     def id
     def size
+    def rand = new Random()
 
     def evaluate = {valueMap ->
         def childValues = [this.getArity()]
@@ -72,10 +73,10 @@ class FunctionNode {
 
     @Override
     Object clone() {
-        def cloneChildren =  new Object[this.getArity()]
+        def cloneChildren =  []
         this.getArity().times {
             cloneChildren[it] = this.children[it].clone()
         }
-        new FunctionNode(value : this.value, id : this.id, size : this.size, children : cloneChildren)
+        new FunctionNode(value : this.value, id : rand.nextLong(), size : this.size, children : cloneChildren)
     }
 }

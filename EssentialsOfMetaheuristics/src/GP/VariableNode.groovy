@@ -3,12 +3,13 @@ package GP
 class VariableNode {
 
     def value
-    def children = [0]
+    def children = []
     def id
     def size = 1
+    def rand = new Random()
 
     def evaluate = {valueMap ->
-        valueMap[this.value]
+        (int) valueMap.getAt(this.value)
     }
 
     String toString() {
@@ -18,13 +19,13 @@ class VariableNode {
     def getArity = {
         0
     }
-    
+
     def generateDot = {
         def returnString = ""
         returnString = this.id + " [label=\"" + this.value + "\"]\n"
         returnString
     }
-    
+
     def countSize = {
         0
     }
@@ -32,9 +33,9 @@ class VariableNode {
     def traverse = {num, other ->
         this
     }
-    
+
     @Override
     Object clone() {
-        new VariableNode(value : this.value, children : null, id : this.id, size : 1)
+        new VariableNode(value : this.value, children : [], id : rand.nextLong(), size : 1)
     }
 }
