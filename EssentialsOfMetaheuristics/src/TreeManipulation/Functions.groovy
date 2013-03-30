@@ -34,18 +34,19 @@ class Functions {
 
     }
 
-    def sin = {x ->
-        Math.sin(x)
-    }
+   // def sin = {x ->
+   //     Math.sin(x)
+   // }
 
     def cos = {x ->
         Math.cos(x)
     }
 
-
+ //   createFunction(sin, "sin"),
+    
     def public getFunctions() {
         [createFunction(addition, "+"), createFunction(subtract, "-"), createFunction(multiplication, "*"),
-            createFunction(division, "/"), createFunction(ifFunc, "if"), createFunction(sin, "sin"), createFunction(cos, "cos")]
+            createFunction(division, "/"), createFunction(ifFunc, "if"), createFunction(cos, "cos")]
     }
     def createFunction = {x,y ->
         new FunctionNode(value: new GPFunctions(function:x, string:y))
